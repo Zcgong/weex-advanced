@@ -1,5 +1,5 @@
 # weex-advanced
-weex 简单的demo帮助大家进行学习
+weex 进阶demo帮助大家进行学习
 
 # 环境安装只需三步
 
