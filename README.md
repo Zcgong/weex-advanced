@@ -1,7 +1,7 @@
 # weex-advanced
 weex 简单的demo帮助大家进行学习
 
-# 环境安装只需两步
+# 环境安装只需三步
 
 1、chromedriver下载
 
