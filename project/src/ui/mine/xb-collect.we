@@ -1,0 +1,82 @@
+<template>
+    <wxc-navpage height={{navBarHeight}} background-color="white" title={{title}} title-color="#333333" left-item-color="black" left-item-src="{{backImageUrl}}">
+        <div class="line-div"></div>
+        <xb-top-tabbar class="tabbar" tab-items={{tabItems}} select-line-color="#66c4aa" selected-color="#66c4aa"></xb-top-tabbar>
+    </wxc-navpage>
+
+</template>
+
+<style>
+    .root-view {
+        width: 750;
+        background-color: #ebebeb;
+        align-items: center;
+    }
+
+    .line-div {
+        background-color: #cccccc;
+        height: 2;
+        width: 750;
+    }
+</style>
+
+<script>
+    require('weex-components');
+    require('ui/xb-top-tabbar.we');
+    var constants = require("util/constants");
+    var utils = require('util/utils');
+    var constants = require('util/constants');
+    module.exports = {
+        data: {
+            navBarHeight: 88,
+            tab: '\t',
+            return: '\n',
+            title: '我的收藏',
+            backImageUrl: constants.imageUrl.BACK_BLACK,
+            tabItems: [{
+                index: 0,
+                title: "直播回放",
+                titleColor: '#000000',
+                lineColor: '#000000',
+                src: "mine/xb-live-reply.js",
+                visibility: "visible"
+            }, {
+                index: 1,
+                title: "精彩视频",
+                titleColor: '#000000',
+                lineColor: '#000000',
+                src: "mine/xb-wonderful-video.js",
+                visibility: "hidden"
+            }],
+        },
+        created: function() {
+
+            var length = this.tabItems.length;
+            for (var i = 0; i < length; i++) {
+                var tabItem = this.tabItems[i];
+                tabItem.src = utils.getBaseUrl() + tabItem.src;
+            }
+            this.$getConfig(function(config) {
+                var env = config.env;
+                if (env.platform == 'iOS') {
+                    var scale = env.scale;
+                    var deviceWidth = env.deviceWidth / scale;
+                    this.navBarHeight = 64.0 * 750.0 / deviceWidth;
+                }
+
+            }.bind(this));
+            this.$on('naviBar.leftItem.click', function(e) {
+                utils.pop(this);
+            });
+        },
+        methods: {
+            ready: function(e) {
+                var vm = this;
+                vm.$on('tabBar.onClick', function(e) {
+                    var detail = e.detail;
+                    nativeLog('tabBar.onClick ' + detail.index);
+                });
+            },
+        }
+    }
+</script>

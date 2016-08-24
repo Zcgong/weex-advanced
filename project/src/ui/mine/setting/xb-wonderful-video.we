@@ -1,0 +1,45 @@
+<template>
+
+    <div class="root-view">
+        <list style="margin-top:20">
+            <cell>
+                <xb-anchor-video-cell id="10"></xb-anchor-video-cell>
+            </cell>
+        </list>
+    </div>
+
+</template>
+
+<style>
+    .root-view {
+        width: 750;
+        background-color: #ebebeb;
+    }
+</style>
+
+<script>
+    require('weex-components');
+    require('ui/mine/xb-anchor-video-cell.we');
+    require('ui/common/xb-cell.we');
+    var apis = require('util/api');
+    var utils = require('util/utils');
+    var xbWeexApis = require('util/xb-weex-apis');
+    var constants = require('util/constants');
+    module.exports = {
+        data: {
+
+        },
+        created: function() {
+            var self = this;
+            self.isIosPlatform = xbWeexApis.isIosPlatform(self)
+                // self.videoInfos = self.videoInfos.concat(self.videoInfo1)
+                // self.videoInfos = self.videoInfos.concat(self.videoInfo2)
+            self.$on('videoItemClick', function(ref) {
+                utils.toast(this, ref.videoId)
+            });
+        },
+        methods: {
+
+        },
+    }
+</script>
