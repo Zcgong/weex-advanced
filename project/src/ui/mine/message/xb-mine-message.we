@@ -1,0 +1,49 @@
+<template>
+
+    <div class="root">
+        <xb-title-bar left-item-src="{{icBackUrl}}" title="我的消息" background-color="#ffffff" title-color="#333333"></xb-title-bar>
+        <div style="height:20;background-color:#f6f7f8;"></div>
+        <xb-mine-message-cell background-color="#a8c466" icon-url="{{icOfficalMessage}}" message-title="官方通知" welcome-tip="欢迎来到##直播" date="昨天" onclick="officalNoticeClick"></xb-mine-message-cell>
+        <xb-mine-message-cell background-color="#6687c4" icon-url="{{icMessageComment}}" message-title="评论留言" welcome-tip="欢迎来到##直播" date="2016.3.4" onclick="commentClick"></xb-mine-message-cell>
+    </div>
+
+</template>
+
+<style>
+    .root {
+        width: 750;
+        background-color: white;
+    }
+</style>
+
+<script>
+    require('weex-components');
+    require('ui/common/xb-title-bar.we');
+    var utils = require('util/utils');
+    var constants = require('util/constants');
+    module.exports = {
+        data: {
+          icBackUrl: constants.imageUrl.BACK_BLACK,
+          icOfficalMessage: constants.imageUrl.IC_OFFICAL_MESSAGE,
+          icMessageComment: constants.imageUrl.IC_MESSAGE_COMMENT,
+        },
+        created: function() {
+            var self = this;
+            self.getData();
+            self.$on('titleBar.leftItemClick', function(ref) {
+                utils.pop(self);
+            });
+        },
+        methods: {
+            getData: function() {
+
+            },
+            officalNoticeClick: function(ref) {
+                utils.push(this, constants.pageUrl.MINE_OFFICAL_MESSAGE);
+            },
+            commentClick: function(ref) {
+                utils.push(this, constants.pageUrl.MINE_COMMENT_MESSAGE);
+            },
+        }
+    }
+</script>

@@ -1,0 +1,50 @@
+<template>
+
+    <div class="div">
+        <text class="txt-name">{{name}}</text>
+        <text class="txt-age">{{age}}</text>
+    </div>
+
+</template>
+
+<style>
+    .div {
+        width: 750;
+        height: 1294;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .txt-name {
+        width: 750;
+        height: 100;
+        text-align: center;
+        font-size: 50;
+        color: yellow;
+    }
+
+    .txt-age {
+        width: 750;
+        height: 100;
+        text-align: center;
+        font-size: 30;
+        color: red;
+    }
+</style>
+
+<script>
+    require('weex-components')
+    var utils = require('util/utils')
+    module.exports = {
+        data: {
+            name: '',
+            age: 25,
+        },
+        created: function() {
+            var self = this
+            var bundleUrl = self.$getConfig().bundleUrl
+            this.name = utils.getParameterByName('name', bundleUrl)
+            this.age = utils.getParameterByName('age', bundleUrl)
+        },
+    };
+</script>

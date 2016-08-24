@@ -1,0 +1,49 @@
+<template>
+
+    <div class="root">
+        <xb-title-bar left-item-src="{{vm.data.icBackUrl}}" title="官方消息" right-item-title="清空" background-color="#ffffff" title-color="#333333"></xb-title-bar>
+        <div style="height:20;background-color:#f6f7f8;"></div>
+        <list style="height:1206;">
+            <xb-refresh></xb-refresh>
+            <cell repeat="{{vm.data.officalNotices}}">
+                <xb-offical-message-cell icon-url="{{iconUrl}}" message-content="{{messageContent}}" date="{{date}}"></xb-offical-message-cell>
+            </cell>
+        </list>
+    </div>
+
+</template>
+
+<style>
+    .root {
+        width: 750;
+        background-color: #f6f7f8;
+    }
+</style>
+
+<script>
+    require('weex-components')
+    require('ui/common/xb-title-bar.we')
+    require('ui/mine/message/xb-offical-message-cell.we')
+    var utils = require('util/utils')
+    var controller = require('util/controller/mine/message/xb-offical-message-controller')
+    module.exports = {
+        data: {
+            vm: controller.vm,
+        },
+        created: function() {
+            var self = this
+            controller.getOfficalNoticeData(self)
+            self.$on('titleBar.leftItemClick', function(ref) {
+                utils.pop(self)
+            })
+            self.$on('titleBar.rightItemClick', function(ref) {
+                controller.clearAllDatas()
+            })
+        },
+        methods: {
+            // clearAllDatas: function(ref) {
+            //     controller.clearAllDatas()
+            // },
+        }
+    }
+</script>

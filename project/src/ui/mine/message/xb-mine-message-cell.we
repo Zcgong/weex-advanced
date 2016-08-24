@@ -1,0 +1,77 @@
+<template>
+    <div class="row">
+        <image class="img-message-type" style="background-color:{{backgroundColor}}" src={{iconUrl}}></image>
+        <div class="div-right">
+            <text class="txt-message-title">{{messageTitle}}</text>
+            <text class="txt-date">{{date}}</text>
+            <text class="txt-welcome-tip">{{welcomeTip}}</text>
+        </div>
+    </div>
+</template>
+
+<style>
+    .row {
+        flex-direction: row;
+        margin-left: 20;
+        margin-right: 20;
+        padding-top: 10;
+        padding-bottom: 10;
+        border-bottom-width: 1;
+        border-color: #cccccc;
+        background-color: white;
+    }
+
+    .img-message-type {
+        width: 100;
+        height: 100;
+        margin-right: 20;
+        padding: 10;
+        border-color: #eeeeee;
+        border-width: 2;
+        border-radius: 10;
+    }
+
+    .div-right {
+        width: 590;
+        height: 100;
+        position: relative;
+    }
+
+    .txt-message-title {
+        color: #333333;
+        margin-top: 10;
+        font-size: 32;
+    }
+
+    .txt-date {
+        margin-right: 20px;
+        position: absolute;
+        color: #999999;
+        font-size: 24;
+        top: 10;
+        right: 10;
+    }
+
+    .txt-welcome-tip {
+        color: #999999;
+        position: absolute;
+        font-size: 24;
+        left: 0;
+        bottom: 10;
+    }
+</style>
+
+<script>
+    require('weex-components');
+    var constants = require('util/constants');
+    module.exports = {
+        data: {
+            id: 10,
+            iconUrl: constants.imageUrl.DEFAULT,
+            backgroundColor:'#a8c466',
+            messageTitle: "官方通知",
+            date: "2016.6.24",
+            welcomeTip: '欢迎来到##直播'
+        },
+    }
+</script>

@@ -1,0 +1,76 @@
+<template>
+    <div class="row">
+        <image class="img-message" src={{iconUrl}}></image>
+        <div class="div-content">
+            <text class="txt-message">{{messageContent}}</text>
+            <text class="txt-date">{{date}}</text>
+        </div>
+        <image class="img-left-arrow" src={{icLeftArrow}}></image>
+    </div>
+</template>
+
+<style>
+    .row {
+        flex-direction: row;
+        padding-top: 20;
+        padding-bottom: 20;
+        padding-left: 40;
+        padding-right: 60;
+    }
+
+    .img-message {
+        width: 80;
+        height: 80;
+        border-color: #66c4aa;
+        border-width: 1;
+        border-radius: 40;
+    }
+
+    .img-left-arrow {
+        position: absolute;
+        left: 150;
+        width: 20;
+        height: 30;
+        margin-top: 25;
+    }
+
+    .div-content {
+        width: 540;
+        margin-left: 48;
+        position: relative;
+        padding-top: 20;
+        padding-left: 20;
+        padding-right: 20;
+        padding-bottom: 50;
+        border-color: #66c4aa;
+        border-width: 1;
+        border-radius: 10;
+        background-color: white;
+    }
+
+    .txt-message {
+        color: #333333;
+        margin-top: 10;
+        font-size: 32;
+    }
+
+    .txt-date {
+        position: absolute;
+        color: #999999;
+        font-size: 24;
+        right: 30;
+    }
+</style>
+
+<script>
+    require('weex-components');
+    var constants = require('util/constants');
+    module.exports = {
+        data: {
+            iconUrl: constants.imageUrl.DEFAULT,
+            icLeftArrow: constants.imageUrl.IC_MESSAGE_LEFT_ARROW,
+            messageContent: '',
+            date: "2016.6.24",
+        },
+    }
+</script>

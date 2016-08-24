@@ -1,0 +1,166 @@
+<template>
+
+    <scroller class="root-view">
+        <image style="width:750;height:40;" src="{{icMineNavigation}}" if="{{isIosPlatform}}"></image>
+        <div class="div-top">
+            <image class="div-top" style="position:absolute;" src="{{icMineBackground}}"></image>
+            <image id="img-back" class="img-back" src="{{icBackUrl}}" onclick="backClick"></image>
+            <image id="img-edit" class="img-edit" src="{{icEditUrl}}" onclick="editClick"></image>
+            <div class="div-mine">
+                <image id="img-user-icon" class="img-user-icon" src="{{userInfo.iconUrl}}" onclick="iconClick"></image>
+                <text class="txt-user-name">简介</text>
+                <text class="txt-brief-tip">{{userInfo.userName}}</text>
+                <text class="txt-brief">{{userInfo.brief}}</text>
+            </div>
+        </div>
+        <div style="height:30;background-color:#f6f7f8;"></div>
+        <wxui-cell-text cell-content='我的喜欢' show-right="true" left-item-src='{{favoriteImgUrl}}' show-right="true" onclick="favoriteClick"></wxui-cell-text>
+        <wxui-cell-text cell-content='我的消息' show-right="true" left-item-src='{{messageImgUrl}}' show-right="true" onclick="messageClick"></wxui-cell-text>
+        <wxui-cell-text cell-content='设置' show-right="true" left-item-src='{{settingImgUrl}}' show-right="true" onclick="settingClick"></wxui-cell-text>
+        <div class="div-send-live" onclick="testParams">
+            <text class="txt-send-live" onclick="testParams">测试传参</text>
+        </div>
+
+    </scroller>
+
+</template>
+
+<style>
+    .root-view {
+        width: 750;
+        background-color: #ffffff;
+    }
+
+    .div-top {
+        width: 750;
+        height: 602;
+        position: relative;
+    }
+
+    .img-back {
+        width: 48;
+        height: 48;
+        position: absolute;
+        left: 20;
+        top: 25;
+    }
+
+    .img-edit {
+        width: 48;
+        height: 48;
+        position: absolute;
+        right: 20;
+        top: 25;
+    }
+
+    .div-mine {
+        width: 750;
+        height: 514;
+        align-items: center;
+        margin-top: 88;
+    }
+
+    .img-user-icon {
+        width: 160;
+        height: 160;
+        border-width: 3;
+        border-color: #62c4aa;
+        border-radius: 80;
+        margin-top: 82;
+    }
+
+    .txt-user-name {
+        font-size: 40;
+        color: white;
+        margin-top: 20;
+    }
+
+    .txt-brief-tip {
+        font-size: 28;
+        color: white;
+        margin-top: 70;
+    }
+
+    .txt-brief {
+        width: 375;
+        font-size: 24;
+        color: white;
+        text-align: center;
+        margin-top: 20;
+    }
+
+    .div-send-live {
+        width: 690;
+        height: 88;
+        margin-left: 30;
+        margin-right: 30;
+        border-width: 2;
+        border-color: #62c4aa;
+        border-radius: 10;
+        background-color: #a1dccc;
+        margin-top: 262;
+        margin-bottom: 50;
+        justify-content: center;
+    }
+
+    .txt-send-live {
+        color: white;
+        font-size: 36;
+        text-align: center;
+    }
+</style>
+
+<script>
+    require('weex-components')
+    require('ui/common/wxui-cell-text.we')
+    var apis = require('util/api')
+    var utils = require('util/utils')
+    var xbWeexApis = require('util/xb-weex-apis')
+    var xbBridge = require('util/xb-bridge')
+    var constants = require('util/constants')
+    nativeLog("constants ------------- :" + constants.imageUrl.IC_MINE_NAVIGATION)
+    var controller = require('util/controller/mine/xb-minepage-controller')
+
+    module.exports = {
+        data: {
+            isIosPlatform: false,
+            icMineNavigation: constants.imageUrl.IC_MINE_NAVIGATION,
+            icMineBackground: constants.imageUrl.IC_MINE_BACKGROUND,
+            icBackUrl: constants.imageUrl.BACK_WDITE,
+            icEditUrl: constants.imageUrl.MINE_EDIT,
+            favoriteImgUrl: constants.imageUrl.MINE_FAVORITE,
+            messageImgUrl: constants.imageUrl.IC_MINE_MESSAGE,
+            settingImgUrl: constants.imageUrl.MINE_SETTING,
+            userInfo: controller.getUserInfo()
+        },
+        created: function() {
+            var self = this
+            xbBridge.logger('minepage created')
+            self.isIosPlatform = xbWeexApis.isIosPlatform(self)
+        },
+        methods: {
+            editClick: function(ret) {
+                controller.setUserInfo()
+                utils.push(this, constants.pageUrl.UPDATE_USERINFO)
+            },
+            backClick: function(ret) {
+                utils.pop(this)
+            },
+            favoriteClick: function(ret) {
+                utils.push(this, constants.pageUrl.SETTING_COLLECT)
+            },
+            messageClick: function(ret) {
+                utils.push(this, constants.pageUrl.MINE_MESSAGE)
+            },
+            settingClick: function(ret) {
+                utils.push(this, constants.pageUrl.SETTING_URL)
+            },
+            testParams: function(ret) {
+                utils.push(this, constants.pageUrl.MINE_TEST_PARAMS + "?name=walid&age=25")
+            },
+            iconClick: function(ret) {
+                utils.push(this, constants.pageUrl.UPDATE_USERINFO)
+            },
+        },
+    }
+</script>

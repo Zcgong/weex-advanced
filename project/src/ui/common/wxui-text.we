@@ -1,0 +1,27 @@
+<template>
+
+    <div class="div" style="height:{{height}};background-color:{{bgColor}};">
+        <text style="font-size:{{fontSize}};color:{{color}}">{{value}}</text>
+    </div>
+
+</template>
+
+<style>
+    .div {
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<script>
+    require('weex-components');
+    module.exports = {
+        data: {
+            height: "88",
+            fontSize: '30',
+            value: '',
+            color: '#000000',
+            bgColor: "#ffffff",
+        },
+    };
+</script>

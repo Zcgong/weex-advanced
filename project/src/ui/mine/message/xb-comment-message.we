@@ -1,0 +1,49 @@
+<template>
+
+    <div class="root">
+        <xb-title-bar left-item-src="{{vm.data.icBackUrl}}" title="留言通知" right-item-title="清空" background-color="#ffffff" title-color="#333333"></xb-title-bar>
+        <list style="height:1206;">
+            <xb-refresh></xb-refresh>
+            <cell repeat="{{vm.data.commentMessages}}">
+                <xb-comment-message-cell message-id="{{id}}" icon-url="{{iconUrl}}" nick-name="{{nickName}}" message-content="{{messageContent}}" date="{{date}}"></xb-comment-message-cell>
+            </cell>
+        </list>
+    </div>
+
+</template>
+
+<style>
+    .root {
+        width: 750;
+        background-color: #f6f7f8;
+    }
+</style>
+
+<script>
+    require('weex-components')
+    require('ui/common/xb-title-bar.we')
+    require('ui/mine/message/xb-comment-message-cell.we')
+    var utils = require('util/utils')
+    var controller = require('util/controller/mine/message/xb-comment-message-controller')
+    module.exports = {
+        data: {
+            vm: controller.vm,
+        },
+        created: function() {
+            var self = this
+            controller.getCommentMessageDate()
+            self.$on('titleBar.leftItemClick', function(ref) {
+                utils.pop(self)
+            })
+            self.$on('titleBar.rightItemClick', function(ref) {
+                controller.clearAllDatas()
+            })
+            self.$on('onMessageReplyClick', function(params) {
+                utils.toastDebug(self, "回复留言Id = " + params.detail.messageId)
+            })
+        },
+        methods: {
+
+        }
+    }
+</script>
