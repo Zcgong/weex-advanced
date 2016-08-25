@@ -14,7 +14,7 @@ npm install chromedriver --chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/ch
 #native入口
 
 1、个人中心主页
-http://192.168.*.***:12580/project/build/src/ui/mine/xb-minepage.js
+http://your_current_IP:12580/project/build/src/ui/mine/xb-minepage.js
 
 2、logo启动页
-http://192.168.*.***:12580/project/build/src/ui/logo.js
+http://your_current_IP:12580/project/build/src/ui/logo.js
