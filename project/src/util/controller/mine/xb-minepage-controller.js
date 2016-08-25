@@ -5,7 +5,6 @@
 
 var utils = require('util/utils')
 var constants = require('util/constants')
-var bridge = require('util/xb-bridge')
 
 var data = {
     userInfo: {
@@ -16,15 +15,6 @@ var data = {
 }
 
 exports.getUserInfo = function() {
-    bridge.getSP(constants.spEnum.AVATAR, function(ref) {
-        data.userInfo.iconUrl = ref.data
-    })
-    bridge.getSP(constants.spEnum.NICK_NAME, function(ref) {
-        data.userInfo.userName = ref.data
-    })
-    bridge.getSP(constants.spEnum.BRIEF, function(ref) {
-        data.userInfo.brief = ref.data
-    })
     return data.userInfo
 }
 
