@@ -53,7 +53,6 @@
     var utils = require('util/utils')
     var constants = require('util/constants')
     var weexApis = require('util/xb-weex-apis')
-    var xbBridge = require('util/xb-bridge')
     module.exports = {
         data: {
             cameraUrl: constants.imageUrl.IC_MINE_PHOTO,
@@ -84,7 +83,7 @@
         },
         methods: {
             iconClick: function(ref) {
-                xbBridge.updateAvatar()
+                utils.toast(this, "iconClick")
             },
             briefClick: function(ret) {
                 utils.toast(this, "briefClick")

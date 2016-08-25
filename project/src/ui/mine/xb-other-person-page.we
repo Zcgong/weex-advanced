@@ -140,8 +140,6 @@
         created: function() {
             var self = this;
             self.isIosPlatform = xbWeexApis.isIosPlatform(self)
-                // self.videoInfos = self.videoInfos.concat(self.videoInfo1)
-                // self.videoInfos = self.videoInfos.concat(self.videoInfo2)
             self.$on('videoItemClick', function(ref) {
                 utils.toast(this, ref.videoId)
             });

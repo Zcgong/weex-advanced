@@ -39,7 +39,6 @@
     var apiCommon = require('util/api/api-common')
     var apiAccount = require('util/api/api-account')
     var constants = require('util/constants')
-    var xbBridge = require('util/xb-bridge')
     module.exports = {
         data: {
             icBackUrl: constants.imageUrl.BACK_BLACK,

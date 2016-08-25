@@ -2,7 +2,6 @@
 
     <div class="div">
         <image id="image" class="image" src="file:///android_asset/image/ic_root_page.png" style="transform-origin:{{transformOrigin}}"></image>
-        <!-- <multiinput value="MyView" style="height:100;width:200;"></multiinput> -->
     </div>
 
 </template>

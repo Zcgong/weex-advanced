@@ -166,9 +166,9 @@
             rightImage: constants.imageUrl.IC_RIGHT_ARROW,
         },
         created: function() {
-            xbBridge.getSPBool(constants.spEnum.OPEN_3G4G, function(ref) {
-                this.isSelected = ref.data
-            }.bind(this))
+            // xbBridge.getSPBool(constants.spEnum.OPEN_3G4G, function(ref) {
+            //     this.isSelected = ref.data
+            // }.bind(this))
             this.$getConfig(function(config) {
                 var env = config.env;
                 if (env.platform == 'iOS') {

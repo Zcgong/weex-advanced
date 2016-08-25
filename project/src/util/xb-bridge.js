@@ -8,8 +8,6 @@
      bridge = __weex_require__('@weex-module/bridge')
  })
 
-// var bridge = require('@weex-module/bridge')
-
 function jumpSendLivePage() {
     bridge.jumpSendLivePage()
 }

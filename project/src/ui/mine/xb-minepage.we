@@ -116,9 +116,7 @@
     var apis = require('util/api')
     var utils = require('util/utils')
     var xbWeexApis = require('util/xb-weex-apis')
-    var xbBridge = require('util/xb-bridge')
     var constants = require('util/constants')
-    nativeLog("constants ------------- :" + constants.imageUrl.IC_MINE_NAVIGATION)
     var controller = require('util/controller/mine/xb-minepage-controller')
 
     module.exports = {
@@ -135,7 +133,6 @@
         },
         created: function() {
             var self = this
-            xbBridge.logger('minepage created')
             self.isIosPlatform = xbWeexApis.isIosPlatform(self)
         },
         methods: {
